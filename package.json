@@ -1,0 +1,23 @@
+{
+  "name": "ubee-widgets",
+  "version": "1.0.0",
+  "description": "Ubee Widgets",
+  "main": "provider.js",
+  "dependencies": {
+    "socket.io-client": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/badillosoft/ubee-widgets.git"
+  },
+  "author": "House Hack",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/badillosoft/ubee-widgets/issues"
+  },
+  "homepage": "https://github.com/badillosoft/ubee-widgets#readme"
+}

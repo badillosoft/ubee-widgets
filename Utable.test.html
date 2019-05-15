@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>UTable Test</title>
+</head>
+<body>
+    <button onclick="watch('table/demo:refresh', window.count++)">Actualizar</button>
+    <script src="http://192.169.200.243:7000/v1/ubee-watch.js?appId=ubee-test"></script>
+    <script src="UTable.js"></script>
+    <script>
+        window.count = 0;
+
+        const table = UTable();
+
+        look("table/demo", datasource => {
+            table.dispatchEvent(new CustomEvent("@datasource", {
+                detail: datasource
+            }));
+        });
+
+        (async () => {
+            await window.ubee.until("@watch:resume");
+            watch("table/demo:refresh", window.count++);
+        })();
+
+        document.body.appendChild(table);
+    </script>
+</body>
+</html>

@@ -22,6 +22,7 @@ socket.on("watch", (package) => {
     const { deviceId, index, data } = package;
 
     console.log(deviceId.slice(0, 32), index, data);
+    
     if (index === "table/demo:refresh") {
         datasource.push(randomFrame());
         socket.emit("look", {

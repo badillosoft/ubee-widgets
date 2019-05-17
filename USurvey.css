@@ -1,0 +1,55 @@
+.survey {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    /* background-color: tomato; */
+    padding: 10px;
+}
+
+.survey-question-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    /* background-color: cornflowerblue; */
+    padding: 10px;
+    margin: 10px;
+}
+
+.survey-question {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    /* background-color: lightgreen; */
+    padding: 10px;
+    margin: 10px;
+}
+
+.survey-option-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: stretch;
+    /* background-color: lemonchiffon; */
+    padding: 10px;
+    margin: 10px;
+}
+
+.survey-option {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    /* background-color: lightpink; */
+    padding: 10px;
+}
+
+.survey-option * {
+    margin: 0px 10px;
+}
+
+.survey-option input {
+    width: 60%;
+}

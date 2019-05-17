@@ -1,18 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>USurvey - Test</title>
+    <link rel="stylesheet" href="USurvey.css">
 </head>
+
 <body>
     <script src="ubee-dom.js"></script>
     <script src="USurvey.js"></script>
     <script>
-        const survey = USurvey();
+        const options = [
+            {
+                type: "text",
+                label: "¿Cuál es tu nombre?",
+                hint: "Nombre"
+            },
+            {
+                type: "radio",
+                label: "De 0 a 10 años",
+                group: "edad",
+            },
+            {
+                type: "radio",
+                label: "De 11 a 20 años",
+                group: "edad",
+            },
+            {
+                type: "radio",
+                label: "De 21 a 30 años",
+                group: "edad",
+            },
+            {
+                type: "checkbox",
+                label: "Estudia",
+            },
+            {
+                type: "checkbox",
+                label: "Tiene Beca",
+            },
+            {
+                type: "checkbox",
+                label: "Trabaja",
+            },
+        ];
 
+        const questions = [
+            {
+                title: "Cuántos años tienes",
+                options: [
+                    {
+                        label: "Edad",
+                        type: "text",
+                        hint: "Ej. 17",
+                    },
+                ]
+            },
+            {
+                title: "Cuáles colores son tus favorito",
+                options: [
+                    {
+                        label: "Rojo",
+                        type: "checkbox",
+                    },
+                    {
+                        label: "Azul",
+                        type: "checkbox",
+                    },
+                    {
+                        label: "Negro",
+                        type: "checkbox",
+                    },
+                ]
+            },
+            {
+                title: "Datos Generales",
+                options: [
+                    {
+                        label: "Nombre Completo",
+                        type: "text",
+                        hint: "Ej. Alberto Sánchez Díaz",
+                    },
+                    {
+                        label: "Dirección",
+                        type: "text",
+                        hint: "Ej. Av. Siempre Viva 123, Medellín, Colombia",
+                    },
+                ]
+            },
+            {
+                title: "Selecciona un rango de edad",
+                options: [
+                    {
+                        label: "De 15 a 17 años",
+                        type: "radio",
+                        group: "edad"
+                    },
+                    {
+                        label: "De 18 a 24 años",
+                        type: "radio",
+                        group: "edad"
+                    },
+                    {
+                        label: "De 25 a 30 años",
+                        type: "radio",
+                        group: "edad"
+                    },
+                    {
+                        label: "De 31 a 40 años",
+                        type: "radio",
+                        group: "edad"
+                    },
+                    {
+                        label: "Más de 40 años",
+                        type: "radio",
+                        group: "edad"
+                    },
+                ]
+            }
+        ];
+    </script>
+    <script>
+        // for (let i = 0; i < 3; i++) {
+        //     let surveyOption = USurveyOption();
+        //     surveyOptionHandler = handle(surveyOption);
+        //     surveyOptionHandler.fire("@test", {
+        //         // create: {},
+        //         // create: { type: "radio" },
+        //         // create: { type: "checkbox" },
+        //     });
+        //     document.body.appendChild(surveyOption);
+        // }
+
+        // const optionContainer = USurveyOptionContainer();
+        // const optionContainerHandler = handle(optionContainer);
+        // optionContainerHandler.fire("@test", {
+        //     create: options
+        // });
+        // document.body.appendChild(optionContainer);
+
+        // const question = USurveyQuestion();
+        // const questionHandler = handle(question);
+        // questionHandler.fire("@test", {
+        //     create: {
+        //         title: "Datos generales",
+        //         options
+        //     }
+        // });
+        // document.body.appendChild(question);
+
+        // const questionContainer = USurveyQuestionContainer();
+        // const questionContainerHandler = handle(questionContainer);
+        // questionContainerHandler.fire("@test", {
+        //     create: questions
+        // });
+        // document.body.appendChild(questionContainer);
+        
+        const survey = USurvey();
+        const surveyHandler = handle(survey);
+        surveyHandler.fire("@test", {
+            create: {
+                title: "Demo",
+                questions
+            }
+        });
         document.body.appendChild(survey);
     </script>
 </body>
+
 </html>

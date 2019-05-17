@@ -1,3 +1,53 @@
+function handle(element) {
+    return {
+        fire(event, data) {
+            element.dispatchEvent(new CustomEvent(event, {
+                detail: data
+            }));
+            return this;
+        },
+        subscribe(event, callback) {
+            element.addEventListener(event, e => {
+                e = e instanceof CustomEvent ? e.detail : e;
+                callback(e);
+            });
+            return this;
+        },
+    };
+}
+
+function domTest(element) {
+    const elementHandler = handle(element);
+    if (!element.dataset.domTest) {
+        element.dataset.domTest = new Date().toISOString();
+        elementHandler.subscribe("@test", test => {
+            for (let [event, data] of Object.entries(test || {})) {
+                elementHandler.fire(`@${event}`, data);
+            }
+        });
+    }
+}
+
+function domContainer(container, model=(() => document.createElement("input"))) {
+    const containerHandler = handle(container);
+    if (!container.dataset.domContainer) {
+        container.dataset.domContainer = new Date().toISOString();
+        containerHandler.subscribe("@create", configs => {
+            clearElement(container);
+            for (let config of (configs || [])) {
+                containerHandler.fire("@container:add", config);
+            }
+        });
+        containerHandler.subscribe("@container:add", config => {
+            let element = model();
+            element.dataset.containerIndex = container.children.length;
+            let elementHandler = handle(element);
+            elementHandler.fire("@create", config);
+            container.appendChild(element);
+        });
+    }
+}
+
 function clearElement(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
@@ -48,5 +98,16 @@ async function installStyles(cdn, target = null) {
         });
 
         target.appendChild(link);
+    });
+}
+
+async function wait(predicate, timeout=100) {
+    await new Promise(resolve => {
+        const id = setInterval(() => {
+            if (predicate()) {
+                clearInterval(id);
+                resolve();
+            }
+        }, timeout);
     });
 }

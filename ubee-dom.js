@@ -54,6 +54,14 @@ function clearElement(element) {
     }
 }
 
+function randomColor(alfa = 0.5, red = [0, 255], green = [0, 255], blue = [0, 255]) {
+    const r = Math.floor(Math.random() * (red[1] - red[0]) + red[0]);
+    const g = Math.floor(Math.random() * (green[1] - green[0]) + green[0]);
+    const b = Math.floor(Math.random() * (blue[1] - blue[0]) + blue[0]);
+    const a = 0.5;
+    return [`rgba(${r}, ${g}, ${b}, ${a})`, Math.floor(Math.random() * 100)];
+}
+
 async function installScript(cdn, target = null) {
     if (!cdn) {
         console.warn(`Invald script cdn ${cdn}`);
